@@ -1,7 +1,7 @@
 # IP Guard
 
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dbgee/ip-guard-server/Java%20CI%20for%20ip-guard-server)
-
+[![GitHub issues](https://img.shields.io/github/issues/dbgee/ip-guard-server)](https://github.com/dbgee/ip-guard-server/issues)
 ## 项目介绍
 > 基于springboot，对vultr api 进行调用  
 > 本项目为后端源码（包含了编译过后的前端）；前端基于vue，  
