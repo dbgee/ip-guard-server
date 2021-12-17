@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.kk</groupId>
     <artifactId>ip-guard</artifactId>
-    <version>v0.0.1</version>
+    <version>v0.0.2</version>
     <name>IP Guard</name>
     <description>Based on vultr api to manage servers</description>
     <properties>
