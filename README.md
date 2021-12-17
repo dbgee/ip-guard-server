@@ -12,8 +12,10 @@
 2. maven 3.x
 
 ## 使用方式
-1. 申请Token ：[token 申请链接](https://my.vultr.com/settings/#settingsapi)
-2. 用申请到的token 替换：[application.properties](src/main/resources/application.properties) 中的`vultr.token` 的值
+1. 准备token 和快照id
+    1. 申请Token ：[token 申请链接](https://my.vultr.com/settings/#settingsapi)
+    2. 制作快照，获取 [snapshot_id](https://my.vultr.com/snapshots/)
+2. 用申请到的token 、snapshot_id替换：[application.properties](src/main/resources/application.properties) 中的`vultr.token` 、`vultr.snapshot_id`的值
 3. 编译、运行
     1. 克隆到本地 `git clone https://github.com/dbgee/ip-guard-server.git `
     2. 进入项目目录，打包编译 `mvn package`

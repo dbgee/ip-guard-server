@@ -24,6 +24,8 @@ public class ServerController {
     private final List<Server> servers=new ArrayList<>();
     @Value("${vultr.token}")
     private String TOKEN;
+    @Value("${vultr.snapshot_id}")
+    private String snapshot_id;
 
     @RequestMapping("/list")
     @ResponseBody
@@ -44,6 +46,7 @@ public class ServerController {
     @RequestMapping(value = "/add")
     @ResponseBody
     public JSONObject addServer(){
+        this.getServers();
         JSONObject result=new JSONObject();
 
         if(checkStatus()){
@@ -60,14 +63,21 @@ public class ServerController {
         JSONObject data=new JSONObject();
         data.put("region","nrt");
         data.put("plan","vhf-1c-1gb");
-        data.put("snapshot_id","c64efa04-6d05-4029-95ec-6eacdb15b9e0");
+        data.put("snapshot_id",snapshot_id);
         HttpResponse httpResponse=HttpRequest.post("https://api.vultr.com/v2/instances")
                 .header("Content-Type", "application/json")
                 .header("Authorization","Bearer "+TOKEN)
                 .body(data.toString()).execute();
         String content=httpResponse.body();
         JSONObject temp_server=JSON.parseObject(content);
-        String instance=temp_server.get("instance").toString();
+        String instance=null;
+        try {
+            instance=temp_server.get("instance").toString();
+        }catch (Exception e){
+            result.put("msg","snapshot_id 无效，等待快照制作完成再进行尝试。");
+            result.put("code",401);
+            return result;
+        }
 
         temp_server=JSON.parseObject(instance);
         Server target_server = getServer(temp_server);
@@ -103,6 +113,7 @@ public class ServerController {
     @RequestMapping("/delete")
     @ResponseBody
     public JSONObject delete(@RequestParam(value = "force",defaultValue = "false")String force,@RequestParam(value = "id",defaultValue = "1234")String id){
+        this.getServers();
         JSONObject result=new JSONObject();
         if("false".equals(force)){
             if(checkStatus()){
@@ -110,8 +121,20 @@ public class ServerController {
                 result.put("code",401);
                 return result;
             }
+            if(servers.size()==1){
+                result.put("msg","服务器数量为1，不能删除");
+                result.put("code",401);
+                return result;
+            }
         }
-        Server lastServer=servers.get(0);
+        Server lastServer=null;
+        try {
+            lastServer=servers.get(0);
+        }catch (IndexOutOfBoundsException e){
+            result.put("msg","服务器数量小于1，不能删除；请先添加一台服务器");
+            result.put("code",401);
+            return result;
+        }
         if(id.equals("1234")){
             id=lastServer.getId();
         }else {
@@ -151,7 +174,7 @@ public class ServerController {
             JSONObject temp_server=JSON.parseObject(instances.get(i).toString());
             Server target_server = getServer(temp_server);
             servers.add(target_server);
-            logger.info("获取到 server:{}",instances.get(i));
+            logger.info("检测到 server:{}",instances.get(i));
         }
     }
 
