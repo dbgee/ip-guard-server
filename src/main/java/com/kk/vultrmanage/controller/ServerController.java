@@ -96,7 +96,7 @@ public class ServerController {
         return result;
     }
 
-    @RequestMapping("/getSnap")
+    @RequestMapping("/getSnapshots")
     @ResponseBody
     public String getSnapshots(){
         HttpResponse httpResponse=HttpRequest.get("https://api.vultr.com/v2/snapshots")
