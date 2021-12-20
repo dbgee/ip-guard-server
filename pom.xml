@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.kk</groupId>
     <artifactId>ip-guard</artifactId>
-    <version>v0.1.0</version>
+    <version>v0.1.1</version>
     <name>IP Guard</name>
     <description>Based on vultr api to manage servers</description>
     <properties>
@@ -41,6 +41,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
@@ -59,5 +66,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>ip-guard</name>
+            <url>https://maven.pkg.github.com/dbgee/ip-guard-server</url>
+        </repository>
+    </distributionManagement>
+
 
 </project>

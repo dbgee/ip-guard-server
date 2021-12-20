@@ -2,7 +2,7 @@ package com.kk.vultrmanage.entity;
 
 import java.util.Objects;
 
-public class Server  {
+public class  Server  {
     private String id;
     private String main_ip;
     private String region;
