@@ -29,11 +29,20 @@ jobs:
     #    Example: mvn compile, or npm install or pip install goes here
     # 3. Invoke Scan with the github token. Leave the workspace empty to use relative url
 
+    - name: Set up JDK 8
+      uses: actions/setup-java@v2
+      with:
+        java-version: '8'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
     - name: Perform Scan
       uses: ShiftLeftSecurity/scan-action@39af9e54bc599c8077e710291d790175c9231f64
       env:
         WORKSPACE: ""
-        GITHUB_TOKEN: ${{ secrets.scan }}
+        GITHUB_TOKEN: ${{ secrets.SCAN }}
         SCAN_AUTO_BUILD: true
       with:
         output: reports

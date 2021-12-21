@@ -31,4 +31,4 @@ jobs:
     - name: Publish to GitHub Packages Apache Maven
       run: mvn clean -DskipTests deploy
       env:
-        GITHUB_TOKEN: ${{ github.scan }}
+        GITHUB_TOKEN: ${{ github.SCAN }}
