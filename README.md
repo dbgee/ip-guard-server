@@ -28,7 +28,7 @@
 3. 在本地修改代码（修复bug、新增功能）
 4. push 到自己的项目代码下
 5. PR (pull requests) 到本项目
-    1. 贡献类型可以有很多，eg：readme 更新、readme 翻译、功能优化等等等等
+    1. 贡献类型可以有很多，eg：readme 更新、readme 翻译、bug修改、功能优化、功能新增等等等等
 
 ## 运行示例
 ![运行截图](images/index.png)
