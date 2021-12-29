@@ -22,5 +22,12 @@
     3. 运行 `java -jar target\ip-guard-v0.0.1.jar`
 4. 访问服务器，默认端口8080
 
+## 代码贡献
+1. Fork [本项目](https://github.com/dbgee/ip-guard-server) 到自己的github 账号下
+2. Clone 自己的项目代码到本地
+3. 在本地修改代码（修复bug、新增功能）
+4. push 到自己的项目代码下
+5. PR (pull requests) 到本项目
+
 ## 运行示例
 ![运行截图](images/index.png)
